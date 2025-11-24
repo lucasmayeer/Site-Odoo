@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- META TAG DE DESCRIÇÃO PARA SEO -->
+    <meta name="description" content="Contagem regressiva para o grande anúncio da Odoo Brasil. Fique por dentro das novidades, informações do evento e prepare-se para o futuro.">
+    <title>Anúncio Odoo Brasil</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #714B67, #8F8F8F, #017E84);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            color: white;
+        }
+
+        /* Partículas flutuantes de fundo */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle1 { width: 300px; height: 300px; background: radial-gradient(circle, #714B67, transparent); top: -150px; left: -100px; animation-duration: 25s; }
+        .particle2 { width: 200px; height: 200px; background: radial-gradient(circle, #E46E78, transparent); top: 50%; right: -100px; animation-duration: 20s; animation-delay: -5s; }
+        .particle3 { width: 400px; height: 400px; background: radial-gradient(circle, #21B799, transparent); bottom: -200px; left: 30%; animation-duration: 30s; animation-delay: -10s; }
+        .particle4 { width: 150px; height: 150px; background: radial-gradient(circle, #E4A900, transparent); top: 20%; left: 50%; animation-duration: 22s; animation-delay: -3s; }
+        .particle5 { width: 250px; height: 250px; background: radial-gradient(circle, #714B67, transparent); bottom: 20%; right: 20%; animation-duration: 28s; animation-delay: -15s; }
+        .particle6 { width: 180px; height: 180px; background: radial-gradient(circle, #E46E78, transparent); top: 60%; left: 10%; animation-duration: 24s; animation-delay: -8s; }
+        .particle7 { width: 350px; height: 350px; background: radial-gradient(circle, #21B799, transparent); top: -100px; right: 30%; animation-duration: 35s; animation-delay: -12s; }
+        .particle8 { width: 120px; height: 120px; background: radial-gradient(circle, #E4A900, transparent); bottom: 40%; left: 70%; animation-duration: 20s; animation-delay: -6s; }
+        /* NOVAS PARTÍCULAS */
+        .particle9 { width: 220px; height: 220px; background: radial-gradient(circle, #714B67, transparent); top: 80%; left: 40%; animation-duration: 26s; animation-delay: -2s; }
+        .particle10 { width: 180px; height: 180px; background: radial-gradient(circle, #E46E78, transparent); top: 10%; right: 5%; animation-duration: 21s; animation-delay: -7s; }
+        .particle11 { width: 320px; height: 320px; background: radial-gradient(circle, #21B799, transparent); bottom: 5%; right: -150px; animation-duration: 32s; animation-delay: -14s; }
+        .particle12 { width: 100px; height: 100px; background: radial-gradient(circle, #E4A900, transparent); top: 40%; left: 5%; animation-duration: 18s; animation-delay: -4s; }
+
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(100px, -50px) rotate(90deg) scale(1.1); }
+            50% { transform: translate(-50px, 100px) rotate(180deg) scale(0.9); }
+            75% { transform: translate(-100px, -30px) rotate(270deg) scale(1.05); }
+        }
+
+        /* Efeito de ruído de TV */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 2;
+            animation: noise 0.7s infinite;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+            pointer-events: none;
+        }
+
+        /* Header (sem fundo) */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px 10px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px; /* LOGO MAIOR */
+            height: auto;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 10px rgba(113, 75, 103, 0.3));
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            padding: 6px 10px;
+        }
+        .nav-item:hover { color: #E4A900; transform: translateY(-2px); }
+        .nav-item.active { color: #21B799; font-weight: 500; }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(45deg, #21B799, #E4A900);
+            border-radius: 1px;
+        }
+
+        /* Main Content (Centralizado) */
+        .main-content {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 180px 20px 80px 20px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .page-section {
+            display: none; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        .page-section.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .countdown-container {
+            padding: 40px 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .countdown-title {
+            color: white;
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            animation: textGlitch 4s infinite;
+            text-align: center;
+        }
+
+        .countdown-display { display: flex; gap: 30px; justify-content: center; align-items: center; margin: 20px 0; flex-wrap: wrap; }
+        .time-unit { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .time-value { font-size: 4em; color: white; font-weight: bold; min-width: 120px; padding: 10px 5px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .time-label { font-size: 0.8em; color: white; margin-top: 10px; letter-spacing: 1px; }
+        .separator { font-size: 3em; color: white; animation: blink 1s infinite; margin: 0 10px; display: flex; align-items: center; padding-bottom: 30px; }
+
+        .content-box {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            text-align: center;
+        }
+        .content-box h2 { font-size: 2.5em; margin-bottom: 20px; color: #21B799; }
+        .content-box p, .content-box li { font-size: 1.1em; line-height: 1.6; font-weight: 300; opacity: 0.9; }
+        .content-box ul { list-style: none; padding: 0; margin-top: 20px; }
+        .content-box li { margin-bottom: 10px; }
+        
+        /* Rodapé Fixo e Clean */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            z-index: 10;
+            font-size: 0.9em;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        /* Animações */
+        @keyframes noise { 0%, 100% { opacity: 0.03; } 50% { opacity: 0.06; } }
+        @keyframes textGlitch { 0%, 88%, 100% { transform: translate(0); color: white; } 89% { transform: translate(-2px, -1px); color: #ff0040; text-shadow: 2px 0 #00ffff; } 90% { transform: translate(3px, 2px); color: #00ffff; text-shadow: -2px 0 #ff0040; } 91% { transform: translate(-1px, 1px); color: #ffff00; text-shadow: 1px 0 #ff0040, -1px 0 #00ffff; } 92% { transform: translate(2px, -2px); color: white; } }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.3; } }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header { padding: 15px 20px 10px 20px; }
+            .logo { width: 120px; margin-bottom: 25px; } /* Ajuste para mobile */
+            .nav-container { gap: 30px; flex-wrap: wrap; }
+            .nav-item { font-size: 0.9em; padding: 5px 7px; }
+            .main-content { padding-top: 200px; }
+            .countdown-display { gap: 15px; }
+            .time-value { font-size: 2.5em; min-width: 80px; }
+            .separator { font-size: 2em; }
+            .countdown-container { padding: 20px 30px; }
+            .content-box h2 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fundo -->
+    <div class="particle particle1"></div>
+    <div class="particle particle2"></div>
+    <div class="particle particle3"></div>
+    <div class="particle particle4"></div>
+    <div class="particle particle5"></div>
+    <div class="particle particle6"></div>
+    <div class="particle particle7"></div>
+    <div class="particle particle8"></div>
+    <!-- NOVAS PARTÍCULAS -->
+    <div class="particle particle9"></div>
+    <div class="particle particle10"></div>
+    <div class="particle particle11"></div>
+    <div class="particle particle12"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <img src="odoo_logo_inverted.svg"" alt="Odoo Brasil" class="logo">
+        
+        <nav class="nav-container">
+            <a href="#" class="nav-item active" data-page="cronometro">Cronômetro</a>
+            <a href="#" class="nav-item" data-page="informacoes">Informações</a>
+            <a href="#" class="nav-item" data-page="cardapio">Cardápio</a>
+            <a href="#" class="nav-item" data-page="presidents-club">President's Club</a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal com as seções -->
+    <main class="main-content">
+        <!-- SEÇÃO 1: CRONÔMETRO -->
+        <section id="cronometro" class="page-section active">
+            <div class="countdown-container">
+                <div class="countdown-title">Falta exatos:</div>
+                <div class="countdown-display">
+                    <div class="time-unit"><div class="time-value" id="days">00</div><div class="time-label">Dias</div></div>
+                    <div class="separator">:</div>
+                    <div class="time-unit"><div class="time-value" id="hours">00</div><div class="time-label">Horas</div></div>
+                    <div class="separator">:</div>
+                    <div class="time-unit"><div class="time-value" id="minutes">00</div><div class="time-label">Minutos</div></div>
+                    <div class="separator">:</div>
+                    <div class="time-unit"><div class="time-value" id="seconds">00</div><div class="time-label">Segundos</div></div>
+                </div>
+                <div class="countdown-title" style="margin-top: 40px;">Você não vai querer perder, Odooer...</div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: INFORMAÇÕES DO EVENTO -->
+        <section id="informacoes" class="page-section">
+            <div class="content-box">
+                <h2>Informações do Evento</h2>
+                <p>Prepare-se para uma noite inesquecível onde revelaremos o futuro da Odoo no Brasil. Um evento exclusivo para nossa comunidade, repleto de inovação, networking e celebração.</p>
+                <p><strong>Data:</strong> 19 de Dezembro de 2025</p>
+                <p><strong>Horário:</strong> 20:00</p>
+                <p><strong>Local:</strong> A ser anunciado em breve. O local será espetacular!</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: CARDÁPIO -->
+        <section id="cardapio" class="page-section">
+            <div class="content-box">
+                <h2>Cardápio</h2>
+                <p>Uma experiência gastronômica para acompanhar uma noite de grandes anúncios.</p>
+                <ul>
+                    <li>Cocktail de Boas-vindas com Espumante</li>
+                    <li>Canapés Finos e Entradas Volantes</li>
+                    <li>Estação de Risotos e Massas Frescas</li>
+                    <li>Ilha de Sobremesas e Café Gourmet</li>
+                    <li>Open Bar Premium</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: PRESIDENT'S CLUB -->
+        <section id="presidents-club" class="page-section">
+            <div class="content-box">
+                <h2>President's Club</h2>
+                <p>Um reconhecimento especial para os parceiros e colaboradores de maior destaque. Durante o evento, teremos um momento exclusivo para celebrar as conquistas e premiar os membros do President's Club 2025.</p>
+                <p>Aguarde mais detalhes sobre os critérios e as premiações.</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>© 2025 Odoo Brasil. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // --- SCRIPT ATUALIZADO PARA GERENCIAR A NAVEGAÇÃO ---
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                const pageId = e.target.getAttribute('data-page');
+
+                document.querySelectorAll('.page-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                const targetPage = document.getElementById(pageId);
+                if(targetPage) {
+                    targetPage.classList.add('active');
+                }
+            });
+        });
+
+        const targetDate = new Date('2025-12-19T20:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                
+                document.querySelector('#cronometro .countdown-title').textContent = 'O Grande Momento Chegou!';
+                document.querySelectorAll('#cronometro .countdown-title')[1].style.display = 'none';
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // O restante do código para os efeitos de glitch permanece o mesmo...
+        setInterval(() => {
+            if (Math.random() < 0.35) {
+                const body = document.body;
+                const elements = document.querySelectorAll('.time-value');
+                body.style.filter = 'hue-rotate(' + (Math.random() * 360) + 'deg) saturate(3) contrast(1.5)';
+                body.style.transform = 'translateX(' + (Math.random() * 15 - 7.5) + 'px) translateY(' + (Math.random() * 10 - 5) + 'px)';
+                elements.forEach(el => {
+                    el.style.color = ['#ff0040', '#00ffff', '#ffff00', 'white'][Math.floor(Math.random() * 4)];
+                    el.style.textShadow = '3px 0 #ff0040, -3px 0 #00ffff';
+                });
+                setTimeout(() => {
+                    body.style.filter = 'none';
+                    body.style.transform = 'none';
+                    elements.forEach(el => {
+                        el.style.color = 'white';
+                        el.style.textShadow = 'none';
+                    });
+                }, 150 + Math.random() * 200);
+            }
+        }, 800);
+    </script>
+</body>
+</html>
+

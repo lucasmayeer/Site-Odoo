@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- META TAG DE DESCRIÇÃO PARA SEO -->
+    <meta name="description" content="Contagem regressiva para o grande anúncio da Odoo Brasil. Fique por dentro das novidades, informações do evento e prepare-se para o futuro.">
+    <title>Anúncio Odoo Brasil</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #714B67, #8F8F8F, #017E84);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            color: white;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle1 { width: 300px; height: 300px; background: radial-gradient(circle, #714B67, transparent); top: -150px; left: -100px; animation-duration: 25s; }
+        .particle2 { width: 200px; height: 200px; background: radial-gradient(circle, #E46E78, transparent); top: 50%; right: -100px; animation-duration: 20s; animation-delay: -5s; }
+        .particle3 { width: 400px; height: 400px; background: radial-gradient(circle, #21B799, transparent); bottom: -200px; left: 30%; animation-duration: 30s; animation-delay: -10s; }
+        .particle4 { width: 150px; height: 150px; background: radial-gradient(circle, #E4A900, transparent); top: 20%; left: 50%; animation-duration: 22s; animation-delay: -3s; }
+        .particle5 { width: 250px; height: 250px; background: radial-gradient(circle, #714B67, transparent); bottom: 20%; right: 20%; animation-duration: 28s; animation-delay: -15s; }
+        .particle6 { width: 180px; height: 180px; background: radial-gradient(circle, #E46E78, transparent); top: 60%; left: 10%; animation-duration: 24s; animation-delay: -8s; }
+        .particle7 { width: 350px; height: 350px; background: radial-gradient(circle, #21B799, transparent); top: -100px; right: 30%; animation-duration: 35s; animation-delay: -12s; }
+        .particle8 { width: 120px; height: 120px; background: radial-gradient(circle, #E4A900, transparent); bottom: 40%; left: 70%; animation-duration: 20s; animation-delay: -6s; }
+        .particle9 { width: 220px; height: 220px; background: radial-gradient(circle, #714B67, transparent); top: 80%; left: 40%; animation-duration: 26s; animation-delay: -2s; }
+        .particle10 { width: 180px; height: 180px; background: radial-gradient(circle, #E46E78, transparent); top: 10%; right: 5%; animation-duration: 21s; animation-delay: -7s; }
+        .particle11 { width: 320px; height: 320px; background: radial-gradient(circle, #21B799, transparent); bottom: 5%; right: -150px; animation-duration: 32s; animation-delay: -14s; }
+        .particle12 { width: 100px; height: 100px; background: radial-gradient(circle, #E4A900, transparent); top: 40%; left: 5%; animation-duration: 18s; animation-delay: -4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(100px, -50px) rotate(90deg) scale(1.1); }
+            50% { transform: translate(-50px, 100px) rotate(180deg) scale(0.9); }
+            75% { transform: translate(-100px, -30px) rotate(270deg) scale(1.05); }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 2;
+            animation: noise 0.7s infinite;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+            pointer-events: none;
+        }
+
+        .header {
+            position: relative;
+            z-index: 100;
+            padding: 40px 80px 40px 60px; 
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 10px rgba(113, 75, 103, 0.3));
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8em; 
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            padding: 6px 10px;
+        }
+        .nav-item:hover { color: #E4A900; transform: translateY(-2px); }
+        .nav-item.active { color: #21B799; font-weight: 500; }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(45deg, #21B799, #E4A900);
+            border-radius: 1px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px 80px 20px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .page-section {
+            display: none; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            animation: fadeIn 0.8s ease-in-out;
+            text-align: center;
+            padding: 40px 0;
+        }
+        .page-section.active {
+            display: flex;
+        }
+
+        #cronometro, #informacoes-gerais, #cardapio, #presidents-club {
+            min-height: calc(100vh - 200px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .countdown-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .countdown-title {
+            color: white;
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            animation: textGlitch 4s infinite;
+            text-align: center;
+        }
+
+        .countdown-display { display: flex; gap: 30px; justify-content: center; align-items: center; margin: 20px 0; flex-wrap: wrap; }
+        .time-unit { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .time-value { font-size: 4em; color: white; font-weight: bold; min-width: 120px; padding: 10px 5px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .time-label { font-size: 0.8em; color: white; margin-top: 10px; letter-spacing: 1px; }
+        .separator { font-size: 3em; color: white; animation: blink 1s infinite; margin: 0 10px; display: flex; align-items: center; padding-bottom: 30px; }
+
+        /* --- ESTILOS PARA SEÇÃO DE INFORMAÇÕES E CARDÁPIO (SEM CAIXA) --- */
+        #informacoes-gerais, #cardapio {
+            background: none;
+            backdrop-filter: none;
+            border-radius: 0;
+            padding: 40px 0;
+            align-items: flex-start;
+        }
+        #cardapio {
+            align-items: center;
+        }
+
+        .info-topic {
+            width: 100%;
+            margin-bottom: 100px; 
+            text-align: center;
+        }
+        .info-topic:last-child {
+            margin-bottom: 0;
+        }
+        .info-topic h3 {
+            font-size: 1.8em;
+            font-weight: 500;
+            color: #E4A900;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            text-align: center; 
+        }
+        .info-topic h3.rules-title {
+            color: #E4A900;
+        }
+        .info-topic.align-left {
+            text-align: left;
+        }
+        .info-topic.align-left > p {
+            text-align: left;
+        }
+        .info-topic.align-left h3 {
+            text-align: left;
+        }
+        .info-topic.align-left ul {
+            display: block;
+        }
+        
+        .info-topic > p {
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .info-topic ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .info-topic li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .info-topic .info-list .info-spacer {
+            height: 1.5em;
+        }
+        
+        .info-topic .warning-text {
+            color: white;
+            font-weight: 700;
+        }
+
+        /* --- NOVA LINHA DO TEMPO VERTICAL MINIMALISTA --- */
+        .timeline-vertical-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto 0 auto;
+            position: relative;
+        }
+        .timeline-vertical-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .timeline-vertical-event {
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+            padding: 0 40px;
+            transition: all 0.3s ease;
+        }
+        .timeline-vertical-container:hover .timeline-vertical-event {
+            filter: blur(2px);
+            opacity: 0.6;
+        }
+        .timeline-vertical-container .timeline-vertical-event:hover {
+            filter: none;
+            opacity: 1;
+            transform: scale(1.03);
+        }
+        .timeline-vertical-event:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-vertical-event:nth-child(odd) {
+            text-align: right;
+        }
+        .timeline-vertical-event:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+        .timeline-vertical-time {
+            font-weight: 700;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .timeline-vertical-desc {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .save-the-date-hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 65vh;
+        }
+        
+        .save-the-date-title {
+            font-size: 3em;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase; 
+            color: #E4A900;
+            margin-bottom: 20px;
+        }
+        .save-the-date-date {
+            font-size: 9em; 
+            font-weight: 800; 
+            line-height: 1.1;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+        .save-the-date-weekday, 
+        .save-the-date-time {
+            font-size: 1.5em;
+            font-weight: 300;
+            opacity: 0.8;
+            font-style: italic; 
+        }
+
+        .scroll-indicator {
+            margin: 20px 0 60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .scroll-indicator p {
+            font-size: 2em;
+            line-height: 0.5;
+            font-weight: 800;
+            opacity: 0.4;
+            animation: wave-bounce 2s infinite ease-in-out;
+        }
+        @keyframes wave-bounce {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(10px);
+                opacity: 1;
+            }
+        }
+        .scroll-indicator p:nth-child(1) { animation-delay: 0.0s; }
+        .scroll-indicator p:nth-child(2) { animation-delay: 0.1s; }
+        .scroll-indicator p:nth-child(3) { animation-delay: 0.2s; }
+        .scroll-indicator p:nth-child(4) { animation-delay: 0.3s; }
+        .scroll-indicator p:nth-child(5) { animation-delay: 0.4s; }
+        .scroll-indicator p:nth-child(6) { animation-delay: 0.5s; }
+        .scroll-indicator p:nth-child(7) { animation-delay: 0.6s; }
+       
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px; 
+            margin: 0 auto 40px auto;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .location-section {
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .location-text {
+            width: 100%;
+            text-align: center;
+        }
+        .location-text h3 {
+            font-size: 2.2em;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .location-text .google-rating {
+            font-size: 1.2em;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .google-rating .rating-text {
+            font-size: 0.8em;
+            font-weight: 300;
+            font-style: normal;
+            color: white;
+            opacity: 0.8;
+        }
+        .google-rating .rating-separator {
+            margin: 0 5px;
+            opacity: 0.7;
+        }
+        .google-rating .instagram-link {
+            font-size: 0.8em;
+            font-weight: 300;
+            font-style: normal;
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .google-rating .instagram-link:hover {
+            opacity: 1;
+            color: #E4A900;
+        }
+        .location-text .location-description,
+        .location-text .location-address {
+            font-size: 1em;
+            line-height: 1.6;
+            font-weight: 300;
+            opacity: 0.9;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .location-text .location-description {
+             margin-bottom: 15px; 
+        }
+        .location-text .location-address {
+            margin-top: 25px; 
+        }
+        .map-buttons-container {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            justify-content: center; 
+        }
+        .map-button {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .map-button:hover {
+            background-color: white;
+            color: #714B67;
+            transform: scale(1.05);
+        }
+
+        #confirm-presence-btn {
+            animation: breathe 2.5s infinite ease-in-out;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* ESTILOS DO CARDÁPIO COM LAYOUT LATERAL */
+        .menu-tabs-container {
+            width: 100%;
+            overflow-x: auto;
+             -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .menu-tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 30px;
+            flex-wrap: nowrap;
+        }
+        .menu-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            border: none;
+            background: none;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+        .menu-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #E4A900;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .menu-tab.active {
+            color: white;
+        }
+        .menu-tab.active::after {
+            transform: scaleX(1);
+        }
+        .menu-content-area {
+            padding: 30px 0;
+            min-height: 300px;
+            text-align: center;
+        }
+        .menu-tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .menu-tab-content.active {
+            display: block;
+        }
+        .menu-description {
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+        .menu-buttons-container {
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+        .menu-buttons-container .map-button {
+            width: 320px;
+            animation: pulse-button 3s infinite ease-in-out;
+        }
+
+        .typing-subtitle {
+            border-right: 3px solid rgba(255, 255, 255, 0.75);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink-cursor-border .75s step-end infinite;
+        }
+
+        @keyframes blink-cursor-border {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
+        }
+
+        @keyframes pulse-button {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            }
+        }
+        
+        @keyframes pulse-warning {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(228, 169, 0, 0.5);
+            }
+            50% {
+                transform: scale(1.03);
+                text-shadow: 0 0 20px rgba(228, 169, 0, 0.8);
+            }
+        }
+
+        .footer {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            z-index: 10;
+            font-size: 0.9em;
+            font-weight: 300;
+            opacity: 0.7;
+            margin-top: 40px;
+        }
+
+        /* Animações */
+        @keyframes noise { 0%, 100% { opacity: 0.03; } 50% { opacity: 0.06; } }
+        @keyframes textGlitch { 0%, 95%, 100% { transform: translate(0); color: white; text-shadow: none; } 96% { transform: translate(-1px, -1px); color: #ff0040; text-shadow: 1px 0 #00ffff; } 97% { transform: translate(1px, 1px); color: #00ffff; text-shadow: -1px 0 #ff0040; } }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.3; } }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header { 
+                padding: 20px; 
+                flex-direction: column;
+                gap: 15px;
+            }
+            .logo { 
+                width: 120px; 
+            }
+            .nav-container { gap: 15px; }
+            .nav-item { font-size: 0.8em; padding: 4px 6px; }
+            .page-section, #cronometro, #informacoes-gerais, #cardapio, #presidents-club { min-height: 0; }
+            
+            .countdown-display { gap: 15px; }
+            .time-value { font-size: 2.5em; min-width: 80px; }
+            .separator { font-size: 2em; }
+            
+            .content-box h2, .location-section > h2 { font-size: 2em; }
+            .location-text h3 { font-size: 1.8em; }
+            
+            .save-the-date-hero { min-height: 60vh; }
+            .save-the-date-title { font-size: 2em; }
+            .save-the-date-date { font-size: 5.5em; } 
+            .save-the-date-time, .save-the-date-weekday { font-size: 1.2em; }
+
+            .timeline-vertical-container::before {
+                left: 8px;
+            }
+            .timeline-vertical-event,
+            .timeline-vertical-event:nth-child(even) {
+                left: 0;
+                width: 100%;
+                padding-left: 40px;
+                text-align: left;
+            }
+             .timeline-vertical-event:nth-child(odd) {
+                padding-right: 0;
+                text-align: left;
+            }
+            
+        }
+
+        @media (max-width: 480px) {
+            .menu-buttons-container .map-button {
+                width: 100%;
+            }
+            .time-value { font-size: 3em; min-width: 70px; } 
+            .separator { font-size: 2em; }
+            .save-the-date-date { font-size: 3.5em; } 
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    <div class="particle particle1"></div>
+    <div class="particle particle2"></div>
+    <div class="particle particle3"></div>
+    <div class="particle particle4"></div>
+    <div class="particle particle5"></div>
+    <div class="particle particle6"></div>
+    <div class="particle particle7"></div>
+    <div class="particle particle8"></div>
+    <div class="particle particle9"></div>
+    <div class="particle particle10"></div>
+    <div class="particle particle11"></div>
+    <div class="particle particle12"></div>
+    
+    <header class="header">
+        <img src="odoo_logo_inverted.svg" alt="Odoo Brasil" class="logo" style="width: 120px;">
+        <nav class="nav-container">
+            <a href="#" class="nav-item active" data-page="cronometro">Cronômetro</a>
+            <a href="#" class="nav-item" data-page="informacoes">Save The Date</a>
+            <a href="#" class="nav-item" data-page="informacoes-gerais">Informações</a>
+            <a href="#" class="nav-item" data-page="cardapio">Cardápio</a>
+            <a href="#" class="nav-item" data-page="presidents-club">President's Club</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- SEÇÃO 1: CRONÔMETRO -->
+        <section id="cronometro" class="page-section active">
+            <div class="countdown-container">
+                <div class="countdown-title">Falta exatos:</div>
+                <div class="countdown-display">
+                    <div class="time-unit"><div class="time-value" id="days">00</div><div class="time-label">Dias</div></div>
+                    <div class="separator">:</div>
+                    <div class="time-unit"><div class="time-value" id="hours">00</div><div class="time-label">Horas</div></div>
+                    <div class="separator">:</div>
+                    <div class="time-unit"><div class="time-value" id="minutes">00</div><div class="time-label">Minutos</div></div>
+                    <div class="separator">:</div>
+                    <div class="time-unit"><div class="time-value" id="seconds">00</div><div class="time-label">Segundos</div></div>
+                </div>
+                <div class="countdown-title" style="margin-top: 40px;">Você não vai querer perder, Odooer...</div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: SAVE THE DATE COM INDICADOR DE SCROLL -->
+        <section id="informacoes" class="page-section">
+            <div class="save-the-date-hero">
+                <h2 class="save-the-date-title">SAVE THE DATE</h2>
+                <p class="save-the-date-date">19-12-2025</p>
+                <p class="save-the-date-weekday">Sexta-feira</p>
+                <p class="save-the-date-time">Das 08:00pm até 02:00am</p>
+                <div class="focus-wrapper">
+                    <a href="#" class="map-button" id="confirm-presence-btn" style="margin-top: 40px;">Confirmar sua presença</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+            </div>
+
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/nbso3NVz3p8?loop=1&playlist=nbso3NVz3p8&controls=1&rel=0" 
+                    frameborder="0" 
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="scroll-indicator">
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+            </div>
+
+            <div class="location-section">
+                <div class="location-text">
+                    <h3>Âmbar Restaurante & Bar</h3>
+                    <p class="location-description">Vencedor 4 vezes do premio Bom gourmet. O Âmbar é o lugar ideal para quem busca noites elegantes, drinks sofisticados e uma experiência completa em um ambiente moderno e aconchegante.</p>
+                    <p class="google-rating">
+                        ⭐ ⭐ ⭐ ⭐ <span class="rating-text">4.0</span> 
+                        <span class="rating-separator">|</span> 
+                        <a href="https://www.instagram.com/ambar.curitiba/" target="_blank" class="instagram-link">Instagram</a>
+                    </p>
+                    <p class="location-address">R. Cel. Dulcídio, 918 - Batel, Curitiba - PR, 80420-170</p>
+                    <div class="map-buttons-container">
+                        <a href="https://maps.app.goo.gl/FVHTQ21MQZ5vo1QB9" target="_blank" class="map-button">Ver no Mapa</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=R.+Cel.+Dulc%C3%ADdio%2C+918+-+Batel%2C+Curitiba+-+PR%2C+80420-170" target="_blank" class="map-button">Traçar Rota</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SEÇÃO 3: INFORMAÇÕES GERAIS -->
+        <section id="informacoes-gerais" class="page-section">
+            <div class="info-topic align-left">
+                <h3>Informações Gerais</h3>
+                <p style="font-style: italic; opacity: 0.9; margin-bottom: 30px; line-height: 1.6; text-align: left;">
+                    A Odoo Brasil reservou com exclusividade a casa do Âmbar Bar & Restaurante para comemorar o encerramento de 2025. Será uma noite de celebração, alegria e reconhecimento por todas as conquistas que marcaram este ano.<br><br>
+                    Você foi peça fundamental para o sucesso da Odoo, e essa festa é a nossa forma de agradecer pela sua dedicação e contribuição!
+                </p>
+                <ul class="info-list">
+                    <li><strong>Sobre a Festa:</strong> OPEN BAR & OPEN FOOD (A vontade)</li>
+                    <li><strong>Horário da Festa:</strong> Das 08:00pm até 02:00am</li>
+                    <li><strong>Tempo de Festa:</strong> 06 horas de festa</li>
+                    <li class="info-spacer"></li>
+                    <li><strong>Dress Code:</strong> Esporte Fino</li>
+                    <li><strong>Local possui Fumódromo:</strong> Sim possui.</li>
+                    <li><strong>Local possui Estacionamento:</strong> Não possui.</li>
+                    <li class="info-spacer"></li>
+                    <li><strong>Endereço do Local:</strong> R. Cel. Dulcídio, 918 - Batel, Curitiba - PR, 80420-170</li>
+                    <li><strong>Tempo médio da Odoo até o Local:</strong> 08 minutos de Carro</li>
+                </ul>
+            </div>
+            
+            <div class="info-topic align-left">
+                <h3 class="rules-title">Regras & Orientações</h3>
+                 <ul class="warnings-list">
+                    <li class="warning-text">⚠️ <strong>Evento somente para funcionários!</strong></li>
+                    <li class="warning-text">⚠️ <strong>Se beber, não dirija!</strong></li>
+                    <li class="warning-text">⚠️ <strong>É proibido levar objetos cortantes ou bebidas para consumo próprio!</strong></li>
+                </ul>
+            </div>
+
+            <div class="info-topic">
+                <h3>Cronograma do Evento</h3>
+                <div class="timeline-vertical-container">
+                    <div class="timeline-vertical-event">
+                        <span class="timeline-vertical-time">20:00</span>
+                        <p class="timeline-vertical-desc">Abertura do Evento</p>
+                    </div>
+                    <div class="timeline-vertical-event">
+                        <span class="timeline-vertical-time">20:45</span>
+                        <p class="timeline-vertical-desc">President's Club</p>
+                    </div>
+                    <div class="timeline-vertical-event">
+                        <span class="timeline-vertical-time">21:35</span>
+                        <p class="timeline-vertical-desc">Entrega de Prêmios</p>
+                    </div>
+                    <div class="timeline-vertical-event">
+                        <span class="timeline-vertical-time">00:00</span>
+                        <p class="timeline-vertical-desc">Lanche da Madrugada</p>
+                    </div>
+                    <div class="timeline-vertical-event">
+                        <span class="timeline-vertical-time">02:00</span>
+                        <p class="timeline-vertical-desc">Encerramento do Evento</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO 4: CARDÁPIO -->
+        <section id="cardapio" class="page-section">
+            <div class="info-topic">
+                <h3>Cardápio do Evento</h3>
+                <div class="menu-tabs-container">
+                    <div class="menu-tabs">
+                        <button class="menu-tab active" data-tab="antepastos">Mesa de Antepastos</button>
+                        <button class="menu-tab" data-tab="finger-food">Finger Food & Sobremesa</button>
+                        <button class="menu-tab" data-tab="lanche">Lanche da Madrugada</button>
+                        <button class="menu-tab" data-tab="bebidas">Bebidas</button>
+                    </div>
+                </div>
+
+                <div class="menu-content-area">
+                    <div id="antepastos-content" class="menu-tab-content active">
+                        <h4 class="typing-subtitle" data-text="Mesa de Antepastos" style="font-size: 1.5em; font-weight: 500; margin-bottom: 20px; display: inline-block; vertical-align: top; min-height: 27px;"></h4>
+                        <p class="menu-description">
+                            A Mesa de Antepastos vai ficar disposta o evento todo para consumo!
+                        </p>
+                        <div class="menu-buttons-container">
+                            <div class="map-button">Pães artesanais e focaccias</div>
+                            <div class="map-button">Pastas & Patês Variados</div>
+                            <div class="map-button">Conservas Selecionadas</div>
+                            <div class="map-button">Embutidos & Frios</div>
+                        </div>
+                        <p class="menu-description" style="margin-top: 25px; margin-bottom: 0;">
+                            Será incluída uma opção vegana.
+                        </p>
+                    </div>
+                    <div id="finger-food-content" class="menu-tab-content">
+                        <h4 class="typing-subtitle" data-text="Finger Food & Sobremesa" style="font-size: 1.5em; font-weight: 500; margin-bottom: 20px; display: inline-block; vertical-align: top; min-height: 27px;"></h4>
+                        <p class="menu-description">
+                            O Cardápio de Finger Food e Sobremesa serão circulantes com 2 passagens ao longo do evento.
+                        </p>
+                        <div class="menu-buttons-container">
+                            <div class="map-button">Mini Choripan</div>
+                            <div class="map-button">Frango à Paris</div>
+                            <div class="map-button">Mignon ao Molho de Queijo</div>
+                            <div class="map-button">Mini Espeto de Pernil BBQ</div>
+                            <div class="map-button">Brownie Toffee</div>
+                        </div>
+                        <p class="menu-description" style="margin-top: 25px; margin-bottom: 0;">
+                            Será incluída uma opção vegana.
+                        </p>
+                    </div>
+                    <div id="lanche-content" class="menu-tab-content">
+                        <h4 class="typing-subtitle" data-text="Lanche da Madrugada" style="font-size: 1.5em; font-weight: 500; margin-bottom: 20px; display: inline-block; vertical-align: top; min-height: 27px;"></h4>
+                        <p class="menu-description">
+                            Será servido a partir de 00:00 e ficará disponível até o final do Evento.
+                        </p>
+                        <div class="menu-buttons-container">
+                            <div class="map-button">Cone de Batata Rústica com Cheddar & Bacon</div>
+                            <div class="map-button">Mini Choripan</div>
+                        </div>
+                    </div>
+                    <div id="bebidas-content" class="menu-tab-content">
+                        <h4 class="typing-subtitle" data-text="Carta de Bebidas" style="font-size: 1.5em; font-weight: 500; margin-bottom: 20px; display: inline-block; vertical-align: top; min-height: 27px;"></h4>
+                        <p class="menu-description">
+                           Nossa carta de bebidas conta com Chope, Drinks & Soft Drinks
+                        </p>
+                        <div class="menu-buttons-container">
+                            <div class="map-button">Chope Pilsen</div>
+                            <div class="map-button">Moscow Mule</div>
+                            <div class="map-button">Gin Tônica</div>
+                            <div class="map-button">Caipirinha de Limão</div>
+                            <div class="map-button">Água com e sem gás</div>
+                            <div class="map-button">Coca-Cola (Normal & Zero)</div>
+                            <div class="map-button">Guaraná Antarctica (Normal & Zero)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 5: PRESIDENT'S CLUB -->
+        <section id="presidents-club" class="page-section">
+            <div class="info-topic">
+                <h2 style="font-size: 2.5em; font-weight: 800; color: #E4A900; text-transform: uppercase; animation: pulse-warning 2s infinite ease-in-out; line-height: 1.4;">
+                    Eiii!<br>Ainda estamos produzindo essa parte
+                </h2>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2025 Odoo Brasil. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- NAVEGAÇÃO PRINCIPAL ---
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    const pageId = e.target.getAttribute('data-page');
+
+                    document.querySelectorAll('.page-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    const targetPage = document.getElementById(pageId);
+                    if(targetPage) {
+                        targetPage.classList.add('active');
+                    }
+                });
+            });
+
+            // --- CONTADOR REGRESSIVO ---
+            const targetDate = new Date('2025-12-19T20:00:00').getTime();
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                } else {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    
+                    const countdownTitles = document.querySelectorAll('#cronometro .countdown-title');
+                    if(countdownTitles.length > 0) countdownTitles[0].textContent = 'O Grande Momento Chegou!';
+                    if(countdownTitles.length > 1) countdownTitles[1].style.display = 'none';
+                }
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // --- EFEITO GLITCH SUTIL ---
+            setInterval(() => {
+                if (Math.random() < 0.15) {
+                    const body = document.body;
+                    const elements = document.querySelectorAll('.time-value');
+                    body.style.filter = 'hue-rotate(' + (Math.random() * 40 - 20) + 'deg) saturate(1.5) contrast(1.2)';
+                    body.style.transform = 'translateX(' + (Math.random() * 4 - 2) + 'px) translateY(' + (Math.random() * 4 - 2) + 'px)';
+                    
+                    elements.forEach(el => {
+                        if(Math.random() < 0.5) {
+                            el.style.color = ['#ff0040', '#00ffff', '#ffff00', 'white'][Math.floor(Math.random() * 4)];
+                            el.style.textShadow = '1px 0 #ff0040, -1px 0 #00ffff';
+                        }
+                    });
+
+                    setTimeout(() => {
+                        body.style.filter = 'none';
+                        body.style.transform = 'none';
+                        elements.forEach(el => {
+                            el.style.color = 'white';
+                            el.style.textShadow = 'none';
+                        });
+                    }, 100 + Math.random() * 150);
+                }
+            }, 2500);
+
+            // --- ANIMAÇÃO DE PARTÍCULAS NO CANVAS ---
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleColors = ['#E46E78', '#21B799', '#5B899E', '#E4A900', 'white'];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * 2.5 + 1;
+                    this.speedX = (Math.random() * 3 - 1.5);
+                    this.speedY = (Math.random() * 3 - 1.5);
+                    this.color = particleColors[Math.floor(Math.random() * particleColors.length)];
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.015 + 0.005;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.alpha > this.decay) {
+                        this.alpha -= this.decay;
+                    } else {
+                        this.alpha = 0;
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            function createExplosion(x, y) {
+                const particleCount = 40;
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle(x, y));
+                }
+            }
+
+            function handleParticles() {
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if (particles[i].alpha === 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                handleParticles();
+                requestAnimationFrame(animate);
+            }
+            
+            setInterval(() => {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                createExplosion(x, y);
+            }, 1500);
+
+            animate();
+
+            // --- SCRIPT PARA O CARDÁPIO E EFEITO DE DIGITAÇÃO ---
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            const menuContents = document.querySelectorAll('.menu-tab-content');
+            let currentTypingTimeout;
+
+            function startTypingEffect(element) {
+                if (!element || !element.closest('.menu-tab-content.active')) return;
+                
+                if (currentTypingTimeout) {
+                    clearTimeout(currentTypingTimeout);
+                }
+
+                const text = element.getAttribute('data-text');
+                if (!text) return;
+
+                let textIndex = 0;
+                let isDeleting = false;
+                element.textContent = '';
+
+                function typeWriter() {
+                    if (!element.closest('.menu-tab-content.active')) {
+                        element.textContent = '';
+                        return; 
+                    }
+                    
+                    element.textContent = text.substring(0, textIndex);
+                    const speed = isDeleting ? 75 : 150;
+                    let pause = speed;
+
+                    if (!isDeleting) {
+                        if (textIndex < text.length) {
+                            textIndex++;
+                        } else {
+                            pause = 2000; // Pausa quando a digitação termina
+                            isDeleting = true;
+                        }
+                    } else {
+                        if (textIndex > 0) {
+                            textIndex--;
+                        } else {
+                            pause = 500; // Pausa quando o texto é apagado
+                            isDeleting = false;
+                        }
+                    }
+                    
+                    currentTypingTimeout = setTimeout(typeWriter, pause);
+                }
+                typeWriter();
+            }
+
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    menuTabs.forEach(item => item.classList.remove('active'));
+                    menuContents.forEach(content => content.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    const contentId = tab.dataset.tab + '-content';
+                    const targetContent = document.getElementById(contentId);
+
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                        const typingElement = targetContent.querySelector('.typing-subtitle');
+                        startTypingEffect(typingElement);
+                    }
+                });
+            });
+
+            const initialTypingElement = document.querySelector('.menu-tab-content.active .typing-subtitle');
+            if (initialTypingElement) {
+                startTypingEffect(initialTypingElement);
+            }
+        });
+    </script>
+</body>
+</html>
+
